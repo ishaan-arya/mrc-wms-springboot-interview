@@ -1,0 +1,21 @@
+{
+  "name": "MRC WMS Spring Boot Interview",
+  "image": "mcr.microsoft.com/devcontainers/java:1-25-bookworm",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "vmware.vscode-spring-boot",
+        "humao.rest-client"
+      ]
+    }
+  },
+  "forwardPorts": [8080],
+  "portsAttributes": {
+    "8080": {
+      "label": "Spring Boot API",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": "./mvnw -q -DskipTests package"
+}
