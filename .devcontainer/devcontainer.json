@@ -1,6 +1,6 @@
 {
   "name": "MRC WMS Spring Boot Interview",
-  "image": "mcr.microsoft.com/devcontainers/java:1-25-bookworm",
+  "image": "mcr.microsoft.com/devcontainers/java:1-21-bookworm",
   "customizations": {
     "vscode": {
       "extensions": [
@@ -17,5 +17,5 @@
       "onAutoForward": "notify"
     }
   },
-  "postCreateCommand": "./mvnw -q -DskipTests package"
+  "postCreateCommand": "./mvnw -q dependency:go-offline"
 }
