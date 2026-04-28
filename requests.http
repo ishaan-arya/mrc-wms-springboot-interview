@@ -1,0 +1,34 @@
+### Best-fit pick: only A-02 (200 left) and C-01 (1000 left) can take 150kg.
+### A-02 leaves 50; C-01 leaves 850. Expect 200 OK with assignedBin=A-02, remainingCapacityAfterPlacementKg=50.
+POST http://localhost:8080/api/bins/assign
+Content-Type: application/json
+
+{ "itemCode": "ITEM-1", "weightKg": 150 }
+
+
+### Tightest fit: B-01 has exactly 80kg of headroom. Expect 200 OK with assignedBin=B-01, remainingCapacityAfterPlacementKg=0.
+POST http://localhost:8080/api/bins/assign
+Content-Type: application/json
+
+{ "itemCode": "ITEM-2", "weightKg": 80 }
+
+
+### No bin fits 2000kg. Expect 404 with body { "error": "No suitable bin available" }.
+POST http://localhost:8080/api/bins/assign
+Content-Type: application/json
+
+{ "itemCode": "ITEM-3", "weightKg": 2000 }
+
+
+### Invalid weight (must be > 0). Expect 400.
+POST http://localhost:8080/api/bins/assign
+Content-Type: application/json
+
+{ "itemCode": "ITEM-4", "weightKg": -5 }
+
+
+### Invalid itemCode (must be non-blank). Expect 400.
+POST http://localhost:8080/api/bins/assign
+Content-Type: application/json
+
+{ "itemCode": "", "weightKg": 100 }
